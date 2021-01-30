@@ -1,0 +1,23 @@
+services:
+    node:
+        build: .
+        container_name: node-docker
+        env_file:
+            - ./configs/.env.${DOCKER_ENV}
+        volumes:
+            - .:/usr/src/app
+        ports:
+            - ${SERVER_PORT}:${SERVER_PORT}
+        command: npm run server:${DOCKER_ENV}
+#        environment:
+#            NODE_ENV: ${NODE_ENV}
+        depends_on:
+            - postgres
+    postgres:
+        image: postgres:13.1-alpine
+        container_name: postgres-docker
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports:
+            - ${POSTGRES_HOST}:${POSTGRES_HOST}

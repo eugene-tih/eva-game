@@ -1,0 +1,31 @@
+{
+  "name": "eva",
+  "version": "1.0.0",
+  "description": "Eva Project. repository",
+  "main": "server/Main.ts",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc:server": "tsc -p ./server/tsconfig.json",
+    "tsc:public": "tsc -p ./public/tsconfig.json",
+    "server:dev": "npm run tsc:server && node ./build/Main.js",
+    "server:prod": "npm run tsc:server && node ./build/Main.js",
+    "test:audit": "npm audit --audit-level=high"
+  },
+  "keywords": [],
+  "author": "Yevhen Tykhonov",
+  "license": "ISC",
+  "engines": {
+    "node": "15.x"
+  },
+  "dependencies": {
+    "fastify": "^3.9.2",
+    "fastify-static": "^3.3.1",
+    "knex": "^0.21.15",
+    "pg": "^8.5.1",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.19"
+  }
+}
