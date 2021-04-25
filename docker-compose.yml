@@ -1,6 +1,8 @@
 services:
     node:
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile
         container_name: node-docker
         env_file:
             - ./configs/.env.${DOCKER_ENV}
@@ -8,11 +10,13 @@ services:
             - .:/usr/src/app
         ports:
             - ${SERVER_PORT}:${SERVER_PORT}
+            - 9229:9229
         command: npm run server:${DOCKER_ENV}
 #        environment:
 #            NODE_ENV: ${NODE_ENV}
         depends_on:
             - postgres
+
     postgres:
         image: postgres:13.1-alpine
         container_name: postgres-docker
